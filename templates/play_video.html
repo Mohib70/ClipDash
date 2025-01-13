@@ -1,0 +1,27 @@
+<!-- templates/play_video.html -->
+{% extends "base.html" %}
+{% block content %}
+  <div class="container">
+    <h2>{{ video.title }}</h2>
+    <video controls>
+      <source src="{{ video.video_file.url }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div>
+      <h4>Comments</h4>
+      <div id="comments">
+        {% for comment in video.comments.all %}
+          <div class="comment">
+            <p>{{ comment.user.username }}: {{ comment.comment_text }}</p>
+          </div>
+        {% endfor %}
+      </div>
+      <form id="comment-form">
+        <textarea id="comment-text" class="form-control" placeholder="Add a comment" required></textarea>
+        <button type="submit" class="btn btn-primary">Post Comment</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="{% static 'js/play_video.js' %}"></script>
+{% endblock %}

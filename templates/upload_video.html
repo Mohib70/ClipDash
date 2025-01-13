@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'styles/upload_video.css' %}">
+<div class="upload-container">
+    <h1>Upload Your Video</h1>
+
+    <form id="upload-video-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="Video Title" required class="form-input">
+        </div>
+
+        <div class="form-group">
+            <label for="content">Description</label>
+            <textarea id="content" name="content" placeholder="Describe your video (optional)" class="form-textarea"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="video-file">Video File</label>
+            <input type="file" id="video-file" name="video-file" accept="video/*" required class="form-input">
+        </div>
+
+        <div class="form-group">
+            <label for="duration">Duration (seconds)</label>
+            <input type="number" id="duration" name="duration" min="1" required class="form-input">
+        </div>
+
+        <div class="form-group">
+            <label for="hashtags">Hashtags</label>
+            <input type="text" id="hashtags" name="hashtags" placeholder="e.g., #fun #adventure" class="form-input">
+        </div>
+
+        <button type="submit" class="submit-button">Upload Video</button>
+    </form>
+
+    <div id="upload-success-message" class="success-message" style="display:none;">Video uploaded successfully!</div>
+</div>
+
+<script src="{% static 'js/upload_video.js' %}"></script>
+{% endblock %}

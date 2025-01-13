@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ClipDash{% endblock %}</title>
+
+    <!-- Load static files -->
+    {% load static %}
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Optional: Include a custom CSS file -->
+    <link href="{% static 'styles.css' %}" rel="stylesheet">
+
+    <style>
+        /* Body background color and flexbox layout */
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #4CAF50;
+        }
+        .navbar-brand {
+            color: #fff !important;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #4CAF50 !important;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+        /* Highlight active navigation link */
+        .navbar-nav .nav-link.active {
+            color: #ffbb33 !important;
+        }
+
+        /* Container for content */
+        .container {
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+
+        /* Button styles */
+        .btn-primary {
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+            border-color: #45a049;
+        }
+
+        /* Add a subtle box shadow to the content */
+        .content-box {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .content-box:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hover effect for video cards */
+        .video-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">ClipDash</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <!-- Links for logged-in users -->
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/home/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/upload_video/' %}active{% endif %}" href="{% url 'upload_video' %}">Upload Video</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/logout/' %}active{% endif %}" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <!-- Links for non-logged-in users -->
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/login/' %}active{% endif %}" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/register/' %}active{% endif %}" href="{% url 'register' %}">Register</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Block -->
+    <div class="container content-box">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ClipDash. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS (optional for full functionality like dropdowns, modals, etc.) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

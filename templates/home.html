@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="page-title">Home</h2>
+    <div id="video-list" class="video-grid">
+        {% for video in videos %}
+        <div class="video-item">
+            <h3 class="video-title">{{ video.title }}</h3>
+            <a href="{% url 'play_video' video.id %}" class="video-link">
+                <video class="video-player" width="100%" height="auto" controls>
+                    <source src="{{ video.video_file.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
