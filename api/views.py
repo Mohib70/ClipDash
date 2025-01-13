@@ -31,7 +31,7 @@ def user_logout(request):
     return redirect(reverse('login')) 
 
 
-# User Registration View (API)
+# User Registration View
 def register_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -53,8 +53,8 @@ def register_view(request):
             login(request, user)  # Automatically log the user in
             messages.success(request, 'User created and logged in successfully!')
             
-            # Redirect to the home page or another page after registration
-            return redirect('home')  # Change 'home' to the name of the page you want to redirect to
+            # Redirect to the login page after successful registration
+            return redirect('login-page')  # Assuming 'login-page' is the name of the login view
             
         except Exception as e:
             messages.error(request, f"Error creating user: {e}")
