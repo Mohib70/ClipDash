@@ -53,6 +53,7 @@ urlpatterns = [
     path('register/', register, name='register'),  # Serve register page
     path('login/', login_page, name='login'),      # Serve login page
     path('', home, name='home'),
+    path('home/', home, name='home'),
 ]
 
 if settings.DEBUG:
