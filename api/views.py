@@ -51,8 +51,11 @@ def register_view(request):
                 password=password
             )
             login(request, user)  # Automatically log the user in
-            messages.success(request, 'User created successfully!')
-            return redirect('home')  # Redirect to home or other page after registration
+            messages.success(request, 'User created and logged in successfully!')
+            
+            # Redirect to the home page or another page after registration
+            return redirect('home')  # Change 'home' to the name of the page you want to redirect to
+            
         except Exception as e:
             messages.error(request, f"Error creating user: {e}")
             return render(request, 'register.html')
