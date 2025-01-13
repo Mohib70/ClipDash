@@ -249,7 +249,10 @@ def upload_video(request):
                 user=request.user
             )
             video.save()
-            return JsonResponse({'success': True})
+
+            # Redirect to home page after successful upload
+            return redirect('home')  # Redirect to the home page
+
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)})
 
