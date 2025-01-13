@@ -1,44 +1,54 @@
 {% extends 'base.html' %}
-
 {% load static %}
 {% block content %}
+<!-- Link to your custom styles -->
 <link rel="stylesheet" href="{% static 'styles/upload_video.css' %}">
-<div class="upload-container">
-    <h1>Upload Your Video</h1>
 
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Upload Your Video</h1>
+
+    <!-- Form with Bootstrap classes -->
     <form id="upload-video-form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" placeholder="Video Title" required class="form-input">
+        <!-- Title input field with Bootstrap styling -->
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" id="title" name="title" placeholder="Video Title" required class="form-control">
         </div>
 
-        <div class="form-group">
-            <label for="content">Description</label>
-            <textarea id="content" name="content" placeholder="Describe your video (optional)" class="form-textarea"></textarea>
+        <!-- Description textarea with Bootstrap styling -->
+        <div class="mb-3">
+            <label for="content" class="form-label">Description</label>
+            <textarea id="content" name="content" placeholder="Describe your video (optional)" class="form-control"></textarea>
         </div>
 
-        <div class="form-group">
-            <label for="video-file">Video File</label>
-            <input type="file" id="video-file" name="video-file" accept="video/*" required class="form-input">
+        <!-- Video file input with Bootstrap styling -->
+        <div class="mb-3">
+            <label for="video-file" class="form-label">Video File</label>
+            <input type="file" id="video-file" name="video-file" accept="video/*" required class="form-control">
         </div>
 
-        <div class="form-group">
-            <label for="duration">Duration (seconds)</label>
-            <input type="number" id="duration" name="duration" min="1" required class="form-input">
+        <!-- Duration input field with Bootstrap styling -->
+        <div class="mb-3">
+            <label for="duration" class="form-label">Duration (seconds)</label>
+            <input type="number" id="duration" name="duration" min="1" required class="form-control">
         </div>
 
-        <div class="form-group">
-            <label for="hashtags">Hashtags</label>
-            <input type="text" id="hashtags" name="hashtags" placeholder="e.g., #fun #adventure" class="form-input">
+        <!-- Hashtags input field with Bootstrap styling -->
+        <div class="mb-3">
+            <label for="hashtags" class="form-label">Hashtags</label>
+            <input type="text" id="hashtags" name="hashtags" placeholder="e.g., #fun #adventure" class="form-control">
         </div>
 
-        <button type="submit" class="submit-button">Upload Video</button>
+        <!-- Submit button with Bootstrap styling -->
+        <button type="submit" class="btn btn-primary w-100">Upload Video</button>
     </form>
 
-    <div id="upload-success-message" class="success-message" style="display:none;">Video uploaded successfully!</div>
+    <!-- Success message (hidden by default) -->
+    <div id="upload-success-message" class="alert alert-success mt-3" style="display:none;">Video uploaded successfully!</div>
 </div>
 
+<!-- Link to custom JavaScript -->
 <script src="{% static 'js/upload_video.js' %}"></script>
 {% endblock %}
