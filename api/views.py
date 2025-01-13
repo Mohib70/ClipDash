@@ -184,8 +184,10 @@ class CommentCreateView(APIView):
         return Response({'detail': 'Comment added successfully'}, status=status.HTTP_201_CREATED)
 
 # Render Homepage with List of Videos
-@login_required
 def home(request):
+    if not request.user.is_authenticated:
+        return render(request, 'login.html')  # Render the login page if not authenticated
+    
     videos = Video.objects.all().order_by('-created_at')  # Latest videos first
     return render(request, 'home.html', {'videos': videos})
 
