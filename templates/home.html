@@ -18,6 +18,7 @@
                     <a href="{% url 'play_video' video.id %}" class="video-link">
                         <video class="video-player w-100" controls>
                             <source src="{{ video.video_file.url }}" type="video/mp4">
+                            <source src="{{ video.video_file.url }}" type="video/mp3">
                             <source src="{{ video.video_file.url }}" type="video/webm">
                             <source src="{{ video.video_file.url }}" type="video/ogg">
                             Your browser does not support the video tag.
