@@ -4,25 +4,39 @@
 {% block content %}
   <div class="container">
     <h2>Register</h2>
+
+    <!-- Form for user registration -->
     <form method="POST" id="register-form">
       {% csrf_token %}
+      
+      <!-- Username field -->
       <div class="form-group">
         <label for="username">Username:</label>
         <input type="text" class="form-control" id="username" name="username" required>
-        {% if messages %}
-          {% for message in messages %}
-            <div class="alert alert-danger">{{ message }}</div>
-          {% endfor %}
-        {% endif %}
       </div>
+      
+      <!-- Email field -->
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" class="form-control" id="email" name="email" required>
       </div>
+      
+      <!-- Password field -->
       <div class="form-group">
         <label for="password">Password:</label>
         <input type="password" class="form-control" id="password" name="password" required>
       </div>
+
+      <!-- Display any messages, e.g., validation errors -->
+      {% if messages %}
+        <div class="form-group">
+          {% for message in messages %}
+            <div class="alert alert-danger">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      <!-- Register button -->
       <button type="submit" class="btn btn-primary">Register</button>
     </form>
   </div>
