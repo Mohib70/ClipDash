@@ -31,7 +31,9 @@ def user_logout(request):
     return redirect(reverse('login')) 
 
 
-# User Registration View
+
+
+# User Registration View (API)
 def register_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -61,6 +63,7 @@ def register_view(request):
             return render(request, 'register.html')
 
     return render(request, 'register.html')
+
 
 
 # View to render login.html
